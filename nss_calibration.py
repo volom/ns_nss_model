@@ -58,3 +58,21 @@ res = minimize(lambda params: np.sum((svensson(params, maturity) - yields)**2), 
 # Print the optimized parameters
 print(res.x)
 
+
+# vizualization
+
+import matplotlib.pyplot as plt
+
+# Generate a range of maturities for the curve
+maturity = np.linspace(0, 30, 100)
+
+# Use the optimized parameters to predict the yields for each maturity
+predicted_yields = svensson(res.x, maturity)
+
+# Plot the yield curve
+plt.plot(maturity, predicted_yields, label='Svensson Model')
+plt.xlabel('Maturity (years)')
+plt.ylabel('Yield')
+plt.legend()
+plt.show()
+
